@@ -1,0 +1,239 @@
+mgmt:
+  #
+  # name of management cluster. FQDN will be the <name.<global.domain>
+  name: mgmt
+  #  
+  # Git URL for this management cluster
+  git_url: https://github.com/tme-tse-lab/mgmt-mgmt.tmetse.lab.git
+  #
+  # OPTIONAL
+  # Set to override the global credentials for the given management cluster and all its target clusters
+  #
+  #git_user: ""
+  #git_token: ""
+  #
+  # This management clusters values directory path used in ArgoCD applications. Typically would not change unless
+  # you  decide to change the Git Submodule  directories
+  values_location: /values/mgmt.tmetse.lab/values.yaml
+  #
+  # Container image mirror registry access information for OCP.
+  #
+  registry:
+    url: "lab-registry.mgmt.tmetse.lab"
+    path: ocp41038
+    user: "gitops_mgmt"
+    password: "Redhat01"
+    caching: false
+  #  
+  # Defines if ODF/OCS will be using internal rook/ceph  or external
+  # Uncomment the desired setting
+  #default_storage_class: "odf-lvm-vg1"
+  default_storage_class: "ocs-external-storagecluster-ceph-rbd"
+  #default_storage_class: "ocs	-storagecluster-ceph-rbd"
+  #
+  # External Ceph
+  # -------------  
+  # Need ceph-external-cluster-details-exporter.py from your stable ODF operator to genrate the external_cluster_details
+  #
+  # Example:
+  # ceph osd pool create mgmt-rbd 128
+  # ceph osd pool create mgmt-fs-data 64
+  # ceph osd pool create mgmt-fs-metadata 64
+  # ceph fs new mgmt-fs mgmt-fs-metadata mgmt-fs-data
+  #
+  # python3 ceph-external-cluster-details-exporter.py \
+  #   --run-as-user client.mgmt.health \
+  #   --monitoring-endpoint 192.19.130.11 \
+  #   --rgw-endpoint  192.19.130.11:80 \
+  #   --rbd-data-pool-name mgmt-replicapool \
+  #   --rados-namespace mgmt-radosNamespace \
+  #   --cluster-name mgmt-rookStorage \
+  #   --cephfs-filesystem-name mgmt-fs \
+  #   --cephfs-metadata-pool-name mgmt-fs-metadata \
+  #   --cephfs-data-pool-name mgmt-fs-data \
+  #   --rbd-data-pool-name mgmt-rbd
+  #  
+  external_cluster_details: '[{"name": "rook-ceph-mon-endpoints", "kind": "ConfigMap", "data": {"data": "192.168.52.57=192.168.52.57:6789", "maxMonId": "0", "mapping": "{}"}}, {"name": "rook-ceph-mon", "kind": "Secret", "data": {"admin-secret": "admin-secret", "fsid": "0f773420-5a7c-11ed-920d-b49691bbdb9e", "mon-secret": "mon-secret"}}, {"name": "rook-ceph-operator-creds", "kind": "Secret", "data": {"userID": "client.mgmt.health", "userKey": "AQCbNGpjLV5eMhAAQj+RHbvK24su0cT05ITiwQ=="}}, {"name": "monitoring-endpoint", "kind": "CephCluster", "data": {"MonitoringEndpoint": "192.168.52.57", "MonitoringPort": "9283"}}, {"name": "ceph-rbd", "kind": "StorageClass", "data": {"pool": "ocp-mgmt-rbd"}}, {"name": "rook-csi-rbd-node", "kind": "Secret", "data": {"userID": "csi-rbd-node", "userKey": "AQAiMGpj6iamGRAAbrvBqLDzOZUXb/CccrGFxA=="}}, {"name": "rook-csi-rbd-provisioner", "kind": "Secret", "data": {"userID": "csi-rbd-provisioner", "userKey": "AQAiMGpjccvRGRAAewF25CzCRi3utsvAeBksUQ=="}}, {"name": "rook-csi-cephfs-provisioner", "kind": "Secret", "data": {"adminID": "csi-cephfs-provisioner", "adminKey": "AQCbNGpjIjrQMhAAPlagEa+hdrFut4PvJFXaCg=="}}, {"name": "rook-csi-cephfs-node", "kind": "Secret", "data": {"adminID": "csi-cephfs-node", "adminKey": "AQCbNGpjfbWhMhAAyg+P++JN5AGoksvvwmIr5Q=="}}, {"name": "rook-ceph-dashboard-link", "kind": "Secret", "data": {"userID": "ceph-dashboard-link", "userKey": "https://192.168.52.57:8443/"}}, {"name": "cephfs", "kind": "StorageClass", "data": {"fsName": "ocp-mgmt-fs", "pool": "ocp-mgmt-fs-data"}}]'
+  #
+  # For multinode Management set to 3 and SNO set to 1
+  ingress_replica: 3
+  #
+  # Define the master nodes and storage requirements
+  # Assumed this day0 cluster is deployed by IPI baremetal or Assisted-Installer as the BMH operator is required
+  nodes:
+    masters:
+    - name: "master1.mgmt.tmetse.lab"
+      lso: "true"
+      odf: "true"
+    - name: "master2.mgmt.tmetse.lab"
+      lso: "true"
+      odf: "true"
+    - name: "master3.mgmt.tmetse.lab"
+      lso: "true"
+      odf: "true"
+  # 
+  # ACM Related
+  acm:
+    thanos_yaml: |-
+      type: s3
+      config:
+        bucket: "ocp-mgmt-thanos-bucket"
+        endpoint: "192.168.52.57:80"
+        insecure: true
+        access_key: "N2YYVI8PKLE3ZO5ODV22"
+        secret_key: "udDUUjmFHa4ag03MPWdgmncwYmqYf6b1qMWIGbhJ"
+        http_config:
+          insecure_skip_verify: true
+  # 
+  # Quay specific configurations. Not needed if another vendor image registry is used.
+  # 
+  quay:
+  #
+  # The secret the config will be saved in
+  #
+    registry_name: lab
+    config_secret: lab-quay-config-bundle
+    #
+    # config_yaml is set to the Quay configuration customising items like a user friendly server name.
+    # This config also configures an external S3 storage to be used for image storage.
+    #
+    # ssl_cert and ssl_key are required to configure a site wide self-signed TLS certificates for the server.
+    #
+    config_yaml: |-
+      ALLOW_PULLS_WITHOUT_STRICT_LOGGING: false
+      AUTHENTICATION_TYPE: Database
+      DEFAULT_TAG_EXPIRATION: 2w
+      ENTERPRISE_LOGO_URL: /static/img/RH_Logo_Quay_Black_UX-horizontal.svg
+      FEATURE_BUILD_SUPPORT: false
+      FEATURE_DIRECT_LOGIN: true
+      FEATURE_MAILING: false
+      REGISTRY_TITLE: Red Hat Quay
+      REGISTRY_TITLE_SHORT: Red Hat Quay
+      FEATURE_PROXY_CACHE: true
+      FEATURE_PROXY_STORAGE: true
+      TAG_EXPIRATION_OPTIONS:
+      - 2w
+      TEAM_RESYNC_STALE_TIME: 60m
+      TESTING: false
+      SERVER_HOSTNAME: lab-registry.mgmt.tmetse.lab
+      DISTRIBUTED_STORAGE_CONFIG:
+        default:
+          - RadosGWStorage
+          - access_key: N2YYVI8PKLE3ZO5ODV22
+            bucket_name: ocp-mgmt-bucket
+            hostname: 192.168.52.57
+            is_secure: false
+            port: "80"
+            secret_key: udDUUjmFHa4ag03MPWdgmncwYmqYf6b1qMWIGbhJ
+            storage_path: /datastorage/registry
+      DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
+      DISTRIBUTED_STORAGE_PREFERENCE:
+        - default
+    #  DISTRIBUTED_STORAGE_CONFIG:
+    #    local_us:
+    #    - RadosGWStorage
+    #    - access_key: TAT68AR304KR09A004TG
+    #      bucket_name: mgmt-cluster-bucket
+    #      hostname: 192.19.130.13
+    #      is_secure: false
+    #      port: "80"
+    #      secret_key: YQpp4GXT3o8t9XBnDejQvYEAW2h8bXMnf6HCY5zp
+    #      storage_path: /datastorage/registry
+
+    ssl_cert: |-
+      -----BEGIN CERTIFICATE-----
+      MIIEfjCCA2agAwIBAgICEicwDQYJKoZIhvcNAQELBQAwOTEXMBUGA1UECgwOTEFC
+      LkRJS1RJTy5ORVQxHjAcBgNVBAMMFUNlcnRpZmljYXRlIEF1dGhvcml0eTAeFw0y
+      MTExMjAwMjI5MTJaFw0yMzExMjEwMjI5MTJaMEcxFzAVBgNVBAoMDkxBQi5ESUtU
+      SU8uTkVUMSwwKgYDVQQDDCNsYWItcmVnaXN0cnkub2NwbWdtdC5sYWIuZGlrdGlv
+      Lm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALbB3yDIlVaaq0ZO
+      eyl+hAkMfMWSmPLsH4FqmGGhV8XnHRlWD8sDzn0D+PavRU7Ep79gPHMwGyUiIBit
+      hIOhe37kf9m8uW9dGdU1TeOEbNqqEvC6VvCKc7X2Vs1NP0rd2xge8nC0y1X1SMZF
+      p+Jzu+pb78PMzBRTd+i0WEpCEAMlu42T2ozmXygD3Dwky52zPC97GLTaQfuYM2Gc
+      reKs9KwVzWKPAG3fTIrwZxVjcGAffAkaGHZ93dCBFi2tEbAfndFSdfuyCBGyuyT9
+      Yv/BOawou8gobv0/H9JDmI1oNibx/WFhne9fBI8Sg66wPr/tyKefJjApwGzCU1lV
+      fpMN1WcCAwEAAaOCAYAwggF8MB8GA1UdIwQYMBaAFArUwLl/BONQut9blni9jzZ+
+      cZw2MEAGCCsGAQUFBwEBBDQwMjAwBggrBgEFBQcwAYYkaHR0cDovL2lwYS1jYS5s
+      YWIuZGlrdGlvLm5ldC9jYS9vY3NwMA4GA1UdDwEB/wQEAwIE8DAdBgNVHSUEFjAU
+      BggrBgEFBQcDAQYIKwYBBQUHAwIweQYDVR0fBHIwcDBuoDagNIYyaHR0cDovL2lw
+      YS1jYS5sYWIuZGlrdGlvLm5ldC9pcGEvY3JsL01hc3RlckNSTC5iaW6iNKQyMDAx
+      DjAMBgNVBAoMBWlwYWNhMR4wHAYDVQQDDBVDZXJ0aWZpY2F0ZSBBdXRob3JpdHkw
+      HQYDVR0OBBYEFGVec3OeIt6Oh3smGCpacgJj4ZnxME4GA1UdEQRHMEWCI2xhYi1y
+      ZWdpc3RyeS5vY3BtZ210LmxhYi5kaWt0aW8ubmV0gh5pbmdyZXNzLm9jcG1nbXQu
+      bGFiLmRpa3Rpby5uZXQwDQYJKoZIhvcNAQELBQADggEBALg/oMfo6CnrRJq35SJx
+      u2Vv1gPQsST5v5C0ZV0rgG1HXCya5eTokI7tTEuHC45FhqRgaj9MGYVeJinMj6e4
+      GXUcRGVESRD4qp90gPTHWWYOtTxXvVqZscwP6UT6QbOrCI+r9inDHDVEYuBY9QDa
+      HzEEqM7VjNyqi4xrCotEjmFjEEPQzZ7gNpmN6no0uEuQ05ulQTNid9b0oDfek6Wq
+      9ages+3X5Q1W9V3V8SZWQilO3q5TIJOni83eum68LJS1QrLTWtSNWcHFF+6uyi6h
+      iGEVk1GnmQmMoUL5e1wrspc+ExkUCTQFV7RVDhvEEFUsa2gDsLi9Ivp1PgpNbmb5
+      sKo=
+      -----END CERTIFICATE-----
+
+
+    ssl_key: |-
+      -----BEGIN PRIVATE KEY-----
+      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC2wd8gyJVWmqtG
+      TnspfoQJDHzFkpjy7B+BaphhoVfF5x0ZVg/LA859A/j2r0VOxKe/YDxzMBslIiAY
+      rYSDoXt+5H/ZvLlvXRnVNU3jhGzaqhLwulbwinO19lbNTT9K3dsYHvJwtMtV9UjG
+      Rafic7vqW+/DzMwUU3fotFhKQhADJbuNk9qM5l8oA9w8JMudszwvexi02kH7mDNh
+      nK3irPSsFc1ijwBt30yK8GcVY3BgH3wJGhh2fd3QgRYtrRGwH53RUnX7sggRsrsk
+      /WL/wTmsKLvIKG79Px/SQ5iNaDYm8f1hYZ3vXwSPEoOusD6/7cinnyYwKcBswlNZ
+      VX6TDdVnAgMBAAECggEBAIfHDbDblSfcjXcUg6hWWF4oquJWgc+o4ddSjJesOPvN
+      Mu9J4z3fPB/hPax4lzNoI4CpTP//M4upCNOMxrDM3mVt+haYgeRc9P5UNePc1Mq4
+      JI44wrK/CiycMe0hgO5sWYRYKaLWj2LzcvfrdEln1qrNVxrPIqfPQ3zdz+KLpj3P
+      Hw17kti8mxdnAQwdQqVMIQaV8VbzGRsDGO1VbF5dLTzLfNusgWJI41etYpMIgvB3
+      pPVpXNcd0Vff6xxEQ+WeF/KM3NbvdXBOsYLGINZrNjqpOmLRdvHukJdCt04uhzkp
+      Y7voV4X3W+F+zjA7JIc69+oX+YhBv6f2X1zIKWloGVECgYEA4fRfZdgiBWxo7k39
+      WqUydzA3K+aaiIOwZrajarRFm5QpGRnmWVFYLp6xkAaUuUj3nfKpgR2WbLVKJ8aj
+      ZONzOJnusyl3IMW+2OX8jLUNZcA1ST2LZnVVHo2hqopxpLPxM3yPTETLimaH2J96
+      tjtFQDeZKRqvtqI0Knp8tJPNp4UCgYEAzw8J0wSf55j0wtJD7H5Ru2HX1iaLmqWY
+      ImNUZuHtQ9zgUZxYNB7G1RGE5J7inwacnRtWndfleRbVX6yvbhid0Ao+C4wp6JH+
+      6l3rtqXUXrILgFvMle+kQLrncdxcklruC5kxkksBq4N/SBT/BFNoBlruC/j+deGz
+      JW+2ALN1HvsCgYAFDs5P3k2sp2eV5gME02vUxSyG/At7gM8jDXWM/uoL+H4PBMhm
+      OW7q5Dx/R9Zua1a3n2Xx8PKcDlbRmx2vNXQv0SpJsmTrQ+HowwUrNSZOn8XRlOIY
+      8glsvKjgw2aV1D1S9LfUcjnIKFFkJPW/PIZpUJVKGUHTqb/XL5S5ChHxbQKBgQC/
+      tdXLykFfhpBAfbwkEEUOcKYNgnzJf77fQAaah15N8gjDpzVHdKN2DZV0s+NxiAaj
+      s/c7h/TQa6K9xb5b+nDLeWA/AtSen+ZdCv6+isWZs9HQU66VuF7lC+hU1MnlPEmg
+      9YMfR1FRgxvrGn2PfMYY9EHpVe4MKR/cbpUeCwpK1wKBgF2XYd0HsITkpn/+vyHJ
+      m7d/k8WQwdvMcQelChN50KhEsVIKDVF4f4EcgEP3Rg0Oc8YPCLPQa1k0We+C0WNd
+      zEVpqv4BpapurzNOS+U7jrF1TrRcS+hyZHZUsbylxUYJlDUJNBrtDj/jkwQYFIWg
+      d0q9DWSlkDwAg7cmbGyE2RIO
+      -----END PRIVATE KEY-----
+
+  #
+  # Define the standalone Assisted-Installer  attributes on this management cluster
+  # Assumed it was installed by the Infrastructure Operator
+  ai: 
+    namespace: assisted-installer
+    service_config_name: "assisted-service-config"
+    #
+    # Digest for AI controller image as detected at the time of mirroring
+    # skopeo inspect docker://quay.io/edge-infrastructure/assisted-installer-controller:latest | egrep Digest | awk -F '"' '{print $4}'
+    controller_image: "quay.io/edge-infrastructure/assisted-installer-controller@sha256:7de8be81d61ec1eece42cec358e9f18e25e4020be35451e6340866f487553575"
+    
+    #
+    os_images:
+      osp_version: '4.10'
+      rhcos_version: 410.84.202202251620-0 
+      root_fs_img_url: http://192.19.130.11:8989/openshift-v4/dependencies/rhcos/4.10/latest/rhcos-4.10.3-x86_64-live-rootfs.x86_64.img
+      root_fs_iso_url: http://192.19.130.11:8989/openshift-v4/dependencies/rhcos/4.10/latest/rhcos-4.10.3-x86_64-live.x86_64.iso
+  #
+  ## to get rhcos_version boot root_fs_iso_url image and you'll see it on 1st line of console
+  ## https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.9/latest/
+  ## wget https://releases-art-rhcos.svc.ci.openshift.org/art/storage/releases/rhcos-4.8/48.84.202106301921-0/x86_64/rhcos-48.84.202106301921-0-openstack.x86_64.qcow2.gz?sha256=5a75df7b4d4dc1861093e520187a133eda3439019f280dc6e2f57edf70eb089d
+  bmh: 
+    prov_os_download_url: http://192.19.130.11:8989/rhcos-4.10.3-x86_64-openstack.x86_64.qcow2.gz?sha256=f581896eee37216021bfce9ddd5e1fd8289c366ca0d1db25221c77688de85fd7
+    #prov_os_download_url: http://192.19.130.11:8989/rhcos-48.84.202106301921-0-openstack.x86_64.qcow2.gz?sha256=5a75df7b4d4dc1861093e520187a133eda3439019f280dc6e2f57edf70eb089d
+    #prov_os_download_url: http://192.19.130.11:8989/rhcos-48.84.202106301921-0-openstack.x86_64.qcow2.gz?sha256=5a75df7b4d4dc1861093e520187a133eda3439019f280dc6e2f57edf70eb089d
+  #
+  # Some tuning for LSO volume set on this management cluster
+  lso:
+    maxdevice: 10
+    minsize: 1Gi
+#
+# Site wide Openshift GitOps configuration options
+#
+  gitops:
+    hook_image: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4/ose-tools-rhel8:latest
+    #hook_image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:3a430c4571983d4e774a7c2a6575086ad758d6a76724cc264ba80766abf5ee6b
+    #hook_image: lab-registry.mgmt.tmetse.lab/gitops_mgmt/ose-tools-rhel8@sha256:c2230682e3f3a492967e7b62171cf363cff24fcb8252b2a0ca50e26dbbeb1b24
