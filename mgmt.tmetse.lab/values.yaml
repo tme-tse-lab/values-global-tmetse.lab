@@ -116,90 +116,89 @@ mgmt:
       TEAM_RESYNC_STALE_TIME: 60m
       TESTING: false
       SERVER_HOSTNAME: lab-registry.mgmt.tmetse.lab
+      #DISTRIBUTED_STORAGE_CONFIG:
+      #  default:
+      #  - RadosGWStorage
+      #  - access_key: NJBPAVFV8Y31FVJ1KZRL
+      #    bucket_name: mgmt-cluster-bucket
+      #    hostname: 192.168.52.57
+      #    is_secure: false
+      #    port: "80"
+      #    secret_key: y6jP327JGRDdqBSc7UYhsZLzhZUAuBK9BPK2Ox1j
+      #    storage_path: /datastorage/registry
       DISTRIBUTED_STORAGE_CONFIG:
         default:
-          - RadosGWStorage
-          - access_key: N2YYVI8PKLE3ZO5ODV22
-            bucket_name: ocp-mgmt-bucket
-            hostname: 192.168.52.57
-            is_secure: false
-            port: "80"
-            secret_key: udDUUjmFHa4ag03MPWdgmncwYmqYf6b1qMWIGbhJ
+          - RHOCSStorage
+          - access_key: vYDU9vDIxmwViDYKyqtw
+            bucket_name: mgmt-cluster-bucket-4c15cff2-6b9d-4313-88ea-1c7e1684cf2d
+            hostname: s3.openshift-storage.svc:443
+            is_secure: true
+            port: "443"
+            secret_key: ys2wLN8Tk435/Ac3AwIjuvYCsNQIvnzU0YWrNo0p
             storage_path: /datastorage/registry
       DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
       DISTRIBUTED_STORAGE_PREFERENCE:
         - default
-    #  DISTRIBUTED_STORAGE_CONFIG:
-    #    local_us:
-    #    - RadosGWStorage
-    #    - access_key: TAT68AR304KR09A004TG
-    #      bucket_name: mgmt-cluster-bucket
-    #      hostname: 192.19.130.13
-    #      is_secure: false
-    #      port: "80"
-    #      secret_key: YQpp4GXT3o8t9XBnDejQvYEAW2h8bXMnf6HCY5zp
-    #      storage_path: /datastorage/registry
 
     ssl_cert: |-
       -----BEGIN CERTIFICATE-----
-      MIIEfjCCA2agAwIBAgICEicwDQYJKoZIhvcNAQELBQAwOTEXMBUGA1UECgwOTEFC
-      LkRJS1RJTy5ORVQxHjAcBgNVBAMMFUNlcnRpZmljYXRlIEF1dGhvcml0eTAeFw0y
-      MTExMjAwMjI5MTJaFw0yMzExMjEwMjI5MTJaMEcxFzAVBgNVBAoMDkxBQi5ESUtU
-      SU8uTkVUMSwwKgYDVQQDDCNsYWItcmVnaXN0cnkub2NwbWdtdC5sYWIuZGlrdGlv
-      Lm5ldDCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBALbB3yDIlVaaq0ZO
-      eyl+hAkMfMWSmPLsH4FqmGGhV8XnHRlWD8sDzn0D+PavRU7Ep79gPHMwGyUiIBit
-      hIOhe37kf9m8uW9dGdU1TeOEbNqqEvC6VvCKc7X2Vs1NP0rd2xge8nC0y1X1SMZF
-      p+Jzu+pb78PMzBRTd+i0WEpCEAMlu42T2ozmXygD3Dwky52zPC97GLTaQfuYM2Gc
-      reKs9KwVzWKPAG3fTIrwZxVjcGAffAkaGHZ93dCBFi2tEbAfndFSdfuyCBGyuyT9
-      Yv/BOawou8gobv0/H9JDmI1oNibx/WFhne9fBI8Sg66wPr/tyKefJjApwGzCU1lV
-      fpMN1WcCAwEAAaOCAYAwggF8MB8GA1UdIwQYMBaAFArUwLl/BONQut9blni9jzZ+
-      cZw2MEAGCCsGAQUFBwEBBDQwMjAwBggrBgEFBQcwAYYkaHR0cDovL2lwYS1jYS5s
-      YWIuZGlrdGlvLm5ldC9jYS9vY3NwMA4GA1UdDwEB/wQEAwIE8DAdBgNVHSUEFjAU
-      BggrBgEFBQcDAQYIKwYBBQUHAwIweQYDVR0fBHIwcDBuoDagNIYyaHR0cDovL2lw
-      YS1jYS5sYWIuZGlrdGlvLm5ldC9pcGEvY3JsL01hc3RlckNSTC5iaW6iNKQyMDAx
-      DjAMBgNVBAoMBWlwYWNhMR4wHAYDVQQDDBVDZXJ0aWZpY2F0ZSBBdXRob3JpdHkw
-      HQYDVR0OBBYEFGVec3OeIt6Oh3smGCpacgJj4ZnxME4GA1UdEQRHMEWCI2xhYi1y
-      ZWdpc3RyeS5vY3BtZ210LmxhYi5kaWt0aW8ubmV0gh5pbmdyZXNzLm9jcG1nbXQu
-      bGFiLmRpa3Rpby5uZXQwDQYJKoZIhvcNAQELBQADggEBALg/oMfo6CnrRJq35SJx
-      u2Vv1gPQsST5v5C0ZV0rgG1HXCya5eTokI7tTEuHC45FhqRgaj9MGYVeJinMj6e4
-      GXUcRGVESRD4qp90gPTHWWYOtTxXvVqZscwP6UT6QbOrCI+r9inDHDVEYuBY9QDa
-      HzEEqM7VjNyqi4xrCotEjmFjEEPQzZ7gNpmN6no0uEuQ05ulQTNid9b0oDfek6Wq
-      9ages+3X5Q1W9V3V8SZWQilO3q5TIJOni83eum68LJS1QrLTWtSNWcHFF+6uyi6h
-      iGEVk1GnmQmMoUL5e1wrspc+ExkUCTQFV7RVDhvEEFUsa2gDsLi9Ivp1PgpNbmb5
-      sKo=
+      MIIEvzCCAyegAwIBAgIBDDANBgkqhkiG9w0BAQsFADA1MRMwEQYDVQQKDApUTUVU
+      U0UuTEFCMR4wHAYDVQQDDBVDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwHhcNMjIxMTMw
+      MDQ1MDU0WhcNMjQxMTMwMDQ1MDU0WjA8MRMwEQYDVQQKDApUTUVUU0UuTEFCMSUw
+      IwYDVQQDDBxsYWItcmVnaXN0cnkubWdtdC50bWV0c2UubGFiMIIBIjANBgkqhkiG
+      9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwQrGrptRG40IGjS1o47/NedtW9dmCMLUDO7K
+      pEzUjUUE9nkXDG5NNJR0IU1x0cM8yiwdsTW9p0DWY23HOJyIJHlrnLbILHbeMtw5
+      ZuGnKe8a1Z9X9oL0pccD43KY4cgcfntJqH3g/8vWJIc/d0EkRpDhnKbBDs8BjTjf
+      Yojl1ChAsFP/PUsRUo2dl/dLTEJPN1QFENB87aMn+yWxHCN8fx7Y2USmFP03ccIo
+      WTufED23mxmao1qVSB0/vx89e0hANFy1Q+xlF/KFt6pqUy93q1otn2FgnhXaVpKk
+      HeqK9QFcMQ1c7RXGHqWuGVFchQ3AiRGEJsuv92HKgq7QStqbiwIDAQABo4IBUTCC
+      AU0wHwYDVR0jBBgwFoAUYbstr2DbTPn75med5mXzUKSkggAwPAYIKwYBBQUHAQEE
+      MDAuMCwGCCsGAQUFBzABhiBodHRwOi8vaXBhLWNhLnRtZXRzZS5sYWIvY2Evb2Nz
+      cDAOBgNVHQ8BAf8EBAMCBPAwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMC
+      MHUGA1UdHwRuMGwwaqAyoDCGLmh0dHA6Ly9pcGEtY2EudG1ldHNlLmxhYi9pcGEv
+      Y3JsL01hc3RlckNSTC5iaW6iNKQyMDAxDjAMBgNVBAoMBWlwYWNhMR4wHAYDVQQD
+      DBVDZXJ0aWZpY2F0ZSBBdXRob3JpdHkwHQYDVR0OBBYEFEXn+2helBEUJOnOTHyW
+      3f5g+zmEMCcGA1UdEQQgMB6CHGxhYi1yZWdpc3RyeS5tZ210LnRtZXRzZS5sYWIw
+      DQYJKoZIhvcNAQELBQADggGBALB9EmB8cl0Z/5dXuBZ+zewUSaRpqt6kGXkMQpGB
+      d8He8ij30k1MYisr6HoH1NOWO/8HD0QtODo0CNsV1OfcGsE7nPQD0V4mXpVreFUO
+      2yxdNewByO19FVET6i8mVzT5jyOkiFEzq7Aurh511dV12M3jDU/wtlgzH24DdfAq
+      PWpn0hH9ovbUQajIO11lMTylbi65+dHDUvN8a7E0yQMi7IKGU2t9qL3JlYeIEvQM
+      hysYqyUw2RMOj6t86o9uBm4RrPG2zDj79qZtY2NyY9KalXmeTTLY8NvX6GClBuPp
+      Sy/iOoz0QWTbQZYP2bhlZK59V64FbTiai4IqkJiRQgNTY1UXaEwKuCLNKAZH/zUl
+      tiKvNy8pe7HFyrzQwRbBwklj2M9t5D8NJSu+OBMpnxz4G6lJetAa+w59+FkUqBmi
+      bncqSSct+OsNvGz0qVf7JdVNNC1bYAdGZ9cn0xhcufrydLTS7K0XSwanKDfKGfiE
+      N3WfmGYHXm+jkxmrASMbbGDd1Q==
       -----END CERTIFICATE-----
-
 
     ssl_key: |-
       -----BEGIN PRIVATE KEY-----
-      MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC2wd8gyJVWmqtG
-      TnspfoQJDHzFkpjy7B+BaphhoVfF5x0ZVg/LA859A/j2r0VOxKe/YDxzMBslIiAY
-      rYSDoXt+5H/ZvLlvXRnVNU3jhGzaqhLwulbwinO19lbNTT9K3dsYHvJwtMtV9UjG
-      Rafic7vqW+/DzMwUU3fotFhKQhADJbuNk9qM5l8oA9w8JMudszwvexi02kH7mDNh
-      nK3irPSsFc1ijwBt30yK8GcVY3BgH3wJGhh2fd3QgRYtrRGwH53RUnX7sggRsrsk
-      /WL/wTmsKLvIKG79Px/SQ5iNaDYm8f1hYZ3vXwSPEoOusD6/7cinnyYwKcBswlNZ
-      VX6TDdVnAgMBAAECggEBAIfHDbDblSfcjXcUg6hWWF4oquJWgc+o4ddSjJesOPvN
-      Mu9J4z3fPB/hPax4lzNoI4CpTP//M4upCNOMxrDM3mVt+haYgeRc9P5UNePc1Mq4
-      JI44wrK/CiycMe0hgO5sWYRYKaLWj2LzcvfrdEln1qrNVxrPIqfPQ3zdz+KLpj3P
-      Hw17kti8mxdnAQwdQqVMIQaV8VbzGRsDGO1VbF5dLTzLfNusgWJI41etYpMIgvB3
-      pPVpXNcd0Vff6xxEQ+WeF/KM3NbvdXBOsYLGINZrNjqpOmLRdvHukJdCt04uhzkp
-      Y7voV4X3W+F+zjA7JIc69+oX+YhBv6f2X1zIKWloGVECgYEA4fRfZdgiBWxo7k39
-      WqUydzA3K+aaiIOwZrajarRFm5QpGRnmWVFYLp6xkAaUuUj3nfKpgR2WbLVKJ8aj
-      ZONzOJnusyl3IMW+2OX8jLUNZcA1ST2LZnVVHo2hqopxpLPxM3yPTETLimaH2J96
-      tjtFQDeZKRqvtqI0Knp8tJPNp4UCgYEAzw8J0wSf55j0wtJD7H5Ru2HX1iaLmqWY
-      ImNUZuHtQ9zgUZxYNB7G1RGE5J7inwacnRtWndfleRbVX6yvbhid0Ao+C4wp6JH+
-      6l3rtqXUXrILgFvMle+kQLrncdxcklruC5kxkksBq4N/SBT/BFNoBlruC/j+deGz
-      JW+2ALN1HvsCgYAFDs5P3k2sp2eV5gME02vUxSyG/At7gM8jDXWM/uoL+H4PBMhm
-      OW7q5Dx/R9Zua1a3n2Xx8PKcDlbRmx2vNXQv0SpJsmTrQ+HowwUrNSZOn8XRlOIY
-      8glsvKjgw2aV1D1S9LfUcjnIKFFkJPW/PIZpUJVKGUHTqb/XL5S5ChHxbQKBgQC/
-      tdXLykFfhpBAfbwkEEUOcKYNgnzJf77fQAaah15N8gjDpzVHdKN2DZV0s+NxiAaj
-      s/c7h/TQa6K9xb5b+nDLeWA/AtSen+ZdCv6+isWZs9HQU66VuF7lC+hU1MnlPEmg
-      9YMfR1FRgxvrGn2PfMYY9EHpVe4MKR/cbpUeCwpK1wKBgF2XYd0HsITkpn/+vyHJ
-      m7d/k8WQwdvMcQelChN50KhEsVIKDVF4f4EcgEP3Rg0Oc8YPCLPQa1k0We+C0WNd
-      zEVpqv4BpapurzNOS+U7jrF1TrRcS+hyZHZUsbylxUYJlDUJNBrtDj/jkwQYFIWg
-      d0q9DWSlkDwAg7cmbGyE2RIO
+      MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDBCsaum1EbjQga
+      NLWjjv81521b12YIwtQM7sqkTNSNRQT2eRcMbk00lHQhTXHRwzzKLB2xNb2nQNZj
+      bcc4nIgkeWuctsgsdt4y3Dlm4acp7xrVn1f2gvSlxwPjcpjhyBx+e0mofeD/y9Yk
+      hz93QSRGkOGcpsEOzwGNON9iiOXUKECwU/89SxFSjZ2X90tMQk83VAUQ0Hztoyf7
+      JbEcI3x/HtjZRKYU/TdxwihZO58QPbebGZqjWpVIHT+/Hz17SEA0XLVD7GUX8oW3
+      qmpTL3erWi2fYWCeFdpWkqQd6or1AVwxDVztFcYepa4ZUVyFDcCJEYQmy6/3YcqC
+      rtBK2puLAgMBAAECggEBAIqpVeun7wuuMyq3v907YwByOvBkeYtDfxPHFtILygWr
+      lRQCCNdKB7UECaK+QUqeRfUm2TEoXBFelmCXQynb7kLc4LqR5JljzNmVrLnEztFl
+      Sc42hfWxPVAy8w0WjNBpcGY94rvfp5W18h0M9T6RESCLAzQF59jeQswRFQxvLz9D
+      ZXo5ntaFmw8OBXtAwQGXAnoYTZxk2C/CRMzPBqUlPuaAW5sisZDnIUZxicvqT6l5
+      pgDYaoSK27mQESfxZ3rZl3yFFUsbrSOhUt/uDMTM+3sKair7of2OoTfu5Yny2RXh
+      qH+yJCxeovd4HTB0Hi8fm0dHv3Uf5uNSvccIpOMhulECgYEA92kbm+eJuacCyul3
+      lULpdOh3W1FDcoCpDPxtSAvW8cvazGjomaSLRg2oqTxKhG7nzlbVNTAEl6PcwWQV
+      y739NxqLqdckfx2F5u3xEQMss2/WrZx+yaCu8EbaknDMytN77BR444IZwZr9dcVh
+      taJUEOEW7DVEKsE90bXhEuQymjkCgYEAx752LPxLq0W2fP3UPAqCwNGn2Bf486tV
+      Ywn3pHw1WnXA83QVQxbWVHGFnFctnGgseFSQHssKPz6zj325Qx9U0oXt0DgNiwuq
+      hQ8OHr6j2nJ2C4Ny9Lyb1uOQ8zOoraHDvvfR9sT8jd65PkTHRTL+R9I0sMTsgwYt
+      n78UuslWs+MCgYEA2NbvUrogtG1S/kKXA2PstwETsx5LDe0DvRT0NqPh1HRFpMgB
+      rL9RLanE++aSrPWDBw6FuSMHs1vznC+7BqHSb1w9sjKUkzBt7lL26GEu6WmI7wps
+      +QxypraC1Lw2UUH/p47d0RBywIO1x2WiWI4YPd75tzaMMyjApK9Sv7rvOskCgYEA
+      qIKU/iSmzcpVRyN4/mI7puH5AMRQoXlE4vXQtzKWbEd1Ta38FgpZLQpMlvWxJAd6
+      pNVqdKAEeBC0uXRubCMtkyGr3IK9YjWoWPK3jdZ1M2BnGBWAUNoheuunKJXHUxxq
+      oFxABThwfFuO2ep6VnXLsdmz3AF2Kp92tBMnMOGUxNMCgYA9tXfvHJDuaSJvag4H
+      j39GEpmWAazf9kronlwfzmt5Vj2CQdQ3f6wDdfLY8K6b7EJIpm3fevhm23UfzUkq
+      K9LYX9dSpHYe69pFtyQ/oUWgrNR9iNxpAXBoOFnJC2pyYWSHuBmnV4vTToWa6XTs
+      BXZTwPo1LN+schqW9KmQZiBmIg==
       -----END PRIVATE KEY-----
-
   #
   # Define the standalone Assisted-Installer  attributes on this management cluster
   # Assumed it was installed by the Infrastructure Operator
