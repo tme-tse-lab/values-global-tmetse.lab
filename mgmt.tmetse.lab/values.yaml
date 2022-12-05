@@ -129,12 +129,12 @@ mgmt:
       DISTRIBUTED_STORAGE_CONFIG:
         default:
           - RHOCSStorage
-          - access_key: vYDU9vDIxmwViDYKyqtw
-            bucket_name: mgmt-cluster-bucket-4c15cff2-6b9d-4313-88ea-1c7e1684cf2d
-            hostname: s3.openshift-storage.svc
+          - access_key: AWS_ACCESS_KEY_ID
+            bucket_name: BUCKET_NAME
+            hostname: BUCKET_HOST
             is_secure: true
-            port: "443"
-            secret_key: ys2wLN8Tk435/Ac3AwIjuvYCsNQIvnzU0YWrNo0p
+            port: "BUCKET_PORT"
+            secret_key: AWS_SECRET_ACCESS_KEY
             storage_path: /datastorage/registry
       DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
       DISTRIBUTED_STORAGE_PREFERENCE:
