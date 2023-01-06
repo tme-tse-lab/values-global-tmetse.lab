@@ -139,6 +139,23 @@ mgmt:
       DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
       DISTRIBUTED_STORAGE_PREFERENCE:
         - default
+      AUTHENTICATION_TYPE: LDAP
+      LDAP_ADMIN_DN: uid=ocp-binddn,cn=sysaccounts,cn=etc,dc=tmetse,dc=lab
+      LDAP_ADMIN_PASSWD: LABldap2022
+      LDAP_ALLOW_INSECURE_FALLBACK: false
+      LDAP_BASE_DN:
+      - dc=tmetse
+      - dc=lab
+      LDAP_EMAIL_ATTR: mail
+      LDAP_UID_ATTR: uid
+      LDAP_URI: ldaps://idm01.tmetse.lab
+      LDAP_USER_FILTER: (&(memberOf=cn=giteauser,cn=groups,cn=accounts,dc=tmetse,dc=lab)(uid=%s))
+      LDAP_USER_RDN:
+      - cn=users
+      - cn=accounts
+      FEATURE_NONSUPERUSER_TEAM_SYNCING_SETUP: true
+      FEATURE_TEAM_SYNCING: true
+      TEAM_RESYNC_STALE_TIME: 30m
 
     ssl_cert: |-
       -----BEGIN CERTIFICATE-----
