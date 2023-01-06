@@ -149,7 +149,7 @@ mgmt:
       LDAP_EMAIL_ATTR: mail
       LDAP_UID_ATTR: uid
       LDAP_URI: ldaps://idm01.tmetse.lab
-      LDAP_USER_FILTER: (&(memberOf=cn=quayuser,cn=groups,cn=accounts,dc=tmetse,dc=lab)(uid=%s))
+      LDAP_USER_FILTER: (memberOf=cn=quayuser,cn=groups,cn=accounts,dc=tmetse,dc=lab)
       LDAP_USER_RDN:
       - cn=users
       - cn=accounts
