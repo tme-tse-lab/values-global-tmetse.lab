@@ -101,7 +101,8 @@ mgmt:
     #
     config_yaml: |-
       ALLOW_PULLS_WITHOUT_STRICT_LOGGING: false
-      AUTHENTICATION_TYPE: Database
+      #AUTHENTICATION_TYPE: Database
+      AUTHENTICATION_TYPE: LDAP
       DEFAULT_TAG_EXPIRATION: 2w
       ENTERPRISE_LOGO_URL: /static/img/RH_Logo_Quay_Black_UX-horizontal.svg
       FEATURE_BUILD_SUPPORT: false
@@ -113,7 +114,7 @@ mgmt:
       FEATURE_PROXY_STORAGE: true
       TAG_EXPIRATION_OPTIONS:
       - 2w
-      TEAM_RESYNC_STALE_TIME: 60m
+      TEAM_RESYNC_STALE_TIME: 30m
       TESTING: false
       SERVER_HOSTNAME: lab-registry.mgmt.tmetse.lab
       #DISTRIBUTED_STORAGE_CONFIG:
@@ -138,8 +139,7 @@ mgmt:
             storage_path: /datastorage/registry
       DISTRIBUTED_STORAGE_DEFAULT_LOCATIONS: []
       DISTRIBUTED_STORAGE_PREFERENCE:
-        - default
-      AUTHENTICATION_TYPE: LDAP
+        - default      
       LDAP_ADMIN_DN: uid=ocp-binddn,cn=sysaccounts,cn=etc,dc=tmetse,dc=lab
       LDAP_ADMIN_PASSWD: LABldap2022
       LDAP_ALLOW_INSECURE_FALLBACK: false
@@ -155,7 +155,7 @@ mgmt:
       - cn=accounts
       FEATURE_NONSUPERUSER_TEAM_SYNCING_SETUP: true
       FEATURE_TEAM_SYNCING: true
-      TEAM_RESYNC_STALE_TIME: 30m
+      
 
     ssl_cert: |-
       -----BEGIN CERTIFICATE-----
