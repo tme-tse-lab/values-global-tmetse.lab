@@ -6,15 +6,42 @@ mgmt:
   # Git URL for this management cluster
   git_url: https://github.com/tme-tse-lab/mgmt-mgmt.tmetse.lab.git
   #
-  # OPTIONAL
-  # Set to override the global credentials for the given management cluster and all its target clusters
+  # This management clusters values directory path used in ArgoCD applications. Typically would not change unless
+  # you  decide to change the Git Submodule  directories
+  #
+  values_location: /values/mgmt.tmetse.lab/values.yaml
+  #
+  # Credentials for accessing the private repositories for all OCP GitOps
+  # Due to the environment in the Bellirica lab, I've expanding to support 2 Git repo:
+  #   - one for the MGMT cluster (Github)
+  #   - one for the target clusters (Gitea)
+  #
+  # Comment out if not being used, i.e. for public repos
   #
   #git_user: ""
   #git_token: ""
   #
-  # This management clusters values directory path used in ArgoCD applications. Typically would not change unless
-  # you  decide to change the Git Submodule  directories
-  values_location: /values/mgmt.tmetse.lab/values.yaml
+  # Comment out if not being used, i.e. public repo's or same cred's as mgmt cred's above
+  #
+  git_user_clusters: gitops_mgmt
+  git_token_clusters: 73deb778ce8734988086d316670891ae67abef11
+  #
+  # git_prefix_url_clusters should be set to the git account/org whe the repo's will be kept
+  # URL:
+  #   Target Cluster:
+  #     <git_prefix_url_clusters>/<cluster_git_prefix>-<cluster.name>.<global.domain>.git
+  #
+  git_prefix_url_clusters: "https://gitea.mgmt.tmetse.lab/gitops-tmetse-lab"
+  # 
+  # cluster_git_prefix defines the prefix givenm to all git repos for target clusters
+  #
+  # Example for cluster ran2 and node cu20 :
+  #   values_cluster_prefix_url: "https://github.com/sonofspike"
+  #   cluster_git_prefix: "cluster"
+  #
+  #   Cluster URL: https://github.com/sonofspike/cluster-ran2.telco.lab.git
+  #
+  cluster_git_prefix: "cluster"
   #
   # Container image mirror registry access information for OCP.
   #
