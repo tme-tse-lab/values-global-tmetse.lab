@@ -268,7 +268,7 @@ mgmt:
   ## wget https://mirror.openshift.com/pub/openshift-v4/dependencies/rhcos/4.10/latest/rhcos-openstack.x86_64.qcow2.gz
   ## [tmeadmin@kvm02 www]$ sha256sum rhcos-openstack.x86_64.qcow2.gz
   ## 015f62022d849311a52d7e62a5270f9aaca0305fb76cd41139df8903dfd1116d  rhcos-openstack.x86_64.qcow2.gz
-  ## [tmeadmin@kvm02 www]$ mv rhcos-openstack.x86_64.qcow2.gz rhcos-openstack.x86_64.qcow2.gz?sha256=015f62022d849311a52d7e62a5270f9aaca0305fb76cd41139df8903dfd1116d
+  ## [tmeadmin@kvm02 www]$
 
   bmh: 
     prov_os_download_url: http://192.168.52.56:8989/rhcos-openstack.x86_64.qcow2.gz?sha256=015f62022d849311a52d7e62a5270f9aaca0305fb76cd41139df8903dfd1116d
