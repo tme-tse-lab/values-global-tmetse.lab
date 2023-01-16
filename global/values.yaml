@@ -3,49 +3,25 @@
 #
 global:
 #
-# Domain for Telco/Enterprise environment assigned to OCP
-# Each cluster deployed will be a subdomain of this domain 
-#
-  domain: tmetse.lab
-#
-# Credentials for accessing the private repositories for all OCP GitOps
-# Note that these credentials can be overwritten on a per management cluster/region basis
-# by setting them in the given management clusters values.yaml
-#
-  git_user: gitops_mgmt
-  git_token: 73deb778ce8734988086d316670891ae67abef11
-#
 # Global values directory path used in ArgoCD applications. Typically could not change unless
 # you  decide to change the Git Submodule  directories
 #
   values_location: /values/global/values.yaml
 #
-# Site wide DNS server.
+# Domain for Telco/Enterprise environment assigned to OCP
+# Each cluster deployed will be a subdomain of this domain 
 #
-  dns: 192.168.254.20,192.168.254.21
+  domain: tmetse.lab
+#
+# Site wide DNS server configured on target clusters.
+# Note that MGMT clusters have it set as part of the day0 install
+#
+  dns: 192.168.52.120
 #
 # Site wide NTP server used temporarily during the Assisted-Installer install else only unreachable public NTP
 # servers will be configured by AI. It will get overwritten permanently by chrony_conf below via a new MC.
 #
   ntp: time.google.com
-#
-# git_cluster_prefix_url should be set to the git account/org whe the repo's will be kept
-# URL:
-#   Target Cluster:
-#     <git_cluster_prefix_url>/<cluster_git_prefix>-<cluster.name>.<global.domain>.git
-#
-  git_cluster_prefix_url: "https://github.com/tme-tse-lab"
-# 
-# cluster_git_prefix defines the prefix givenm to all git repos for target clusters
-#
-  cluster_git_prefix: "cluster"
-#
-# Example for cluster ran2 and node cu20 :
-#   values_cluster_prefix_url: "https://github.com/sonofspike"
-#   cluster_git_prefix: "cluster"
-#
-#   Cluster URL: https://github.com/sonofspike/cluster-ran2.telco.lab.git
-#
 #
 # Container image mirror registry access information for OCP.
 #
