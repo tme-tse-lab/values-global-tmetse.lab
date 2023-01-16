@@ -24,7 +24,7 @@ mgmt:
   # Comment out if not being used, i.e. public repo's or same cred's as mgmt cred's above
   #
   git_user_clusters: gitops_mgmt
-  git_token_clusters: 73deb778ce8734988086d316670891ae67abef11
+  git_token_clusters: 3f68c658ecead56b0a2ba3c6d49f5a8a346cad4a
   #
   # git_prefix_url_clusters should be set to the git account/org whe the repo's will be kept
   # URL:
