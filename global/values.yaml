@@ -59,7 +59,7 @@ global:
     # echo $LOCAL_PATH
     # 
     list:
-      - name: openshift-v4.10.46-mgmt-mirror
+      - name: openshift-v4.10.46-manage-mirror
         path: lab-registry.mgmt.tmetse.lab/cache-quayio/openshift-release-dev/ocp-release@sha256:885eeba368670aded2ef6433814ebd0eab21566812125f459af45d93e7109692
   # 
   # Quay specific configurations. Not needed if another vendor image registry is used.
