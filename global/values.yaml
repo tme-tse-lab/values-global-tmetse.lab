@@ -60,7 +60,7 @@ global:
     # 
     list:
       - name: openshift-v4.10.46-manage-mirror
-        path: lab-registry.manage.lab.diktio.net/gitops_mgmt/ocp41046:4.10.46-x86_64
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/ocp41046:4.10.46-x86_64
 
         #path: quay.io/openshift-release-dev/ocp-release@sha256:5f9ac79c9c257c28b8b51e79a0382de285d6e4c4e4537710b7c117601d320293
        
