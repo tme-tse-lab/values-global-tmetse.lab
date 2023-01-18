@@ -27,7 +27,7 @@ global:
 #
   registry:
     url: "lab-registry.mgmt.tmetse.lab"
-    path: ocp41038
+    path: ocp41046
     user: "gitops_mgmt"
     password: "Redhat01"
     caching: false
@@ -45,7 +45,7 @@ global:
     # Must match anm entry in the list below defined in Hive ClusterImageSet CRDs
     #
     #install_mirror_name: "openshift-v4.10.12"
-    install_mirror_name: "openshift-v4.10.45-manage-mirror"
+    install_mirror_name: "openshift-v4.10.46-manage-mirror"
     #
     # List of OCP version mirror URLs available to install. At least oen must be defined.
     # 
@@ -59,8 +59,10 @@ global:
     # echo $LOCAL_PATH
     # 
     list:
-      - name: openshift-v4.10.45-manage-mirror
-        path: quay.io/openshift-release-dev/ocp-release@sha256:5f9ac79c9c257c28b8b51e79a0382de285d6e4c4e4537710b7c117601d320293
+      - name: openshift-v4.10.46-manage-mirror
+        path: lab-registry.manage.lab.diktio.net/gitops_mgmt/ocp41046:4.10.46-x86_64
+
+        #path: quay.io/openshift-release-dev/ocp-release@sha256:5f9ac79c9c257c28b8b51e79a0382de285d6e4c4e4537710b7c117601d320293
        
         #path: lab-registry.mgmt.tmetse.lab/cache-quayio/openshift-release-dev/ocp-release@sha256:5f9ac79c9c257c28b8b51e79a0382de285d6e4c4e4537710b7c117601d320293
   # 
