@@ -47,7 +47,7 @@ mgmt:
   #
   registry:
     url: "lab-registry.mgmt.tmetse.lab"
-    path: ocp41038
+    path: ocp41046
     user: "gitops_mgmt"
     password: "Redhat01"
     caching: false
