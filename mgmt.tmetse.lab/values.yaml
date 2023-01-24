@@ -285,6 +285,6 @@ mgmt:
 #
   gitops:
     #hook_image: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4/ose-tools-rhel8:latest
-    hook_image: registry.redhat.io/openshift4/ose-tools-rhel8:latest
+    hook_image: lab-registry.mgmt.tmetse.lab/registryredhatio/openshift4/ose-tools-rhel8:latest
     #hook_image: registry.redhat.io/openshift4/ose-tools-rhel8@sha256:3a430c4571983d4e774a7c2a6575086ad758d6a76724cc264ba80766abf5ee6b
     #hook_image: lab-registry.mgmt.tmetse.lab/gitops_mgmt/ose-tools-rhel8@sha256:c2230682e3f3a492967e7b62171cf363cff24fcb8252b2a0ca50e26dbbeb1b24
