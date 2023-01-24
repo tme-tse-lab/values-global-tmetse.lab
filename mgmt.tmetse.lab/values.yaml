@@ -50,7 +50,10 @@ mgmt:
     path: ocp41046
     user: "gitops_mgmt"
     password: "Redhat01"
-    caching: false
+    orgs: 
+      - name: gitops_mgmt
+      - name: cache-quayio
+      - name: cache-registryredhatio
   #  
   # Defines if ODF/OCS will be using internal rook/ceph  or external
   # Uncomment the desired setting

@@ -25,12 +25,12 @@ global:
 #
 # Container image mirror registry access information for OCP.
 #
-  registry:
-    url: "lab-registry.mgmt.tmetse.lab"
-    path: ocp41046
-    user: "gitops_mgmt"
-    password: "Redhat01"
-    caching: false
+#  registry:
+#    url: "lab-registry.mgmt.tmetse.lab"
+#    path: ocp41046
+#    user: "gitops_mgmt"
+#    password: "Redhat01"
+
 #
 # Site mirror information required by Hive and Assisted-Installer
 #
