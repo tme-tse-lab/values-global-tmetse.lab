@@ -30,7 +30,10 @@ global:
 #    path: ocp41046
 #    user: "gitops_mgmt"
 #    password: "Redhat01"
-
+#
+# Prefix for target cluster repo naming
+#
+  cluster_git_prefix: "cluster"
 #
 # Site mirror information required by Hive and Assisted-Installer
 #

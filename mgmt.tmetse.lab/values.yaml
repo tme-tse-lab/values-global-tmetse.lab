@@ -41,7 +41,6 @@ mgmt:
   #
   #   Cluster URL: https://github.com/sonofspike/cluster-ran2.telco.lab.git
   #
-  cluster_git_prefix: "cluster"
   #
   # Container image mirror registry access information for OCP.
   #
