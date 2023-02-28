@@ -129,6 +129,26 @@ global:
         IOSaAzTsyekPmalBU/MODjk/fEXjtSOlGfiBLMgXi1Qjk0cQolC+DwAeP6w3urXl
         2R0jyNgCJkq1/RnA
         -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIIDDDCCAfSgAwIBAgIBATANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtpbmdy
+        ZXNzLW9wZXJhdG9yQDE2NzI4ODkyMzUwHhcNMjMwMTA1MDMyNzE0WhcNMjUwMTA0
+        MDMyNzE1WjAmMSQwIgYDVQQDDBtpbmdyZXNzLW9wZXJhdG9yQDE2NzI4ODkyMzUw
+        ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDEaQkeZHsVKRvKZd/BZXaC
+        Z4i4HLZOnq2rKiA+VVNzCNFoUOw1ioDzNfHdCblBOVLZWvgien7wOgoIjTCfX1KY
+        zRIYJq5/YOfFplVzC9c/fQE3Q4iQa0RI08WSTFbdOOUJgVp3DZqcKWFa2A3r/ZjH
+        CV/ZNjubIbIjd2Om6kS7sgg3pjCVzBN9yl3yu+MoMY6bSO2BLAgP2McvmcqMp62k
+        iYUnHjPietqSpeF0auxl8Akior8JvayjNEDG+vKyADGmNZenD547QjopigFMARwx
+        7qYKxapn6ra2Pj3pSXk95d2kRfk7OCh0bGN0hvKpyUPE+PP2gPjX3GC6+4grV3G5
+        AgMBAAGjRTBDMA4GA1UdDwEB/wQEAwICpDASBgNVHRMBAf8ECDAGAQH/AgEAMB0G
+        A1UdDgQWBBSEMTXbfkPoFPhu7IwQh+llPOd93jANBgkqhkiG9w0BAQsFAAOCAQEA
+        aW649vjKnQ9wYQuVr8IL6texfUlyqGKLd1zZpbr4jvZJvwNcCbKT4oJd8QEPJScA
+        IVnWgvJ195M1z1EVgy1Z2NeHWBOAA1kcucXJ9cn/e6fiUNt1N9ATaHKr3JZWqUXz
+        CPEPg8aYzTE0fIo2VdHWLK535MBlg8IBL7J2f2ppzimH9MZP5MJMjqd3OxpPOMyM
+        7TY7h+5jLCdihwJ5nvM4+qWrVGB6YKSA0LulbDmtI5urDNcmMPI3nPyrkrbOLFv+
+        DTrXvtsc8/9nryK7YyTuuIZAjbjoWQvQ7lct9PXkUcXAW5Vbfekwby3G4bn92txv
+        VQU0nNW7qZYZNJV+aY/GZw==
+        -----END CERTIFICATE-----
+
     #
     # Pull_Secret OCP secret name  and local registry pull_secret for target clusters.
     # Global pull secret to merge with the local_registry is dynamically taken from Hub Cluster
