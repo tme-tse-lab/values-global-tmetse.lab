@@ -46,7 +46,7 @@ mgmt:
   #
   registry:
     url: "lab-registry.mgmt.tmetse.lab"
-    path: ocp41046
+    path: "openshift-release-dev/ocp-release"
     user: "gitops_mgmt"
     password: "Redhat01"
     orgs: 

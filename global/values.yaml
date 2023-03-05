@@ -63,9 +63,15 @@ global:
     # 
     list:
       - name: openshift-v4.10.46-manage-mirror
-        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/ocp41046:4.10.46-x86_64-ocp-release
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.46-x86_64-ocp-release
+      - name: openshift-v4.10.47-manage-mirror
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.47-x86_64-ocp-release
+      - name: openshift-v4.10.48-manage-mirror
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.48-x86_64-ocp-release
       - name: openshift-v4.10.51-manage-mirror
-        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/ocp41051:4.10.51-x86_64-ocp-release
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.51-x86_64-ocp-release
+      - name: openshift-v4.10.52-manage-mirror
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.52-x86_64-ocp-release
 
         #FAILS path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.46-x86_64
 
