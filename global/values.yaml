@@ -48,7 +48,7 @@ global:
     # Must match anm entry in the list below defined in Hive ClusterImageSet CRDs
     #
     #install_mirror_name: "openshift-v4.10.12"
-    install_mirror_name: "openshift-v4.10.46-manage-mirror"
+    install_mirror_name: "openshift-v4.10.46-disconnected"
     #
     # List of OCP version mirror URLs available to install. At least oen must be defined.
     # 
@@ -72,6 +72,16 @@ global:
         path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.51-x86_64-ocp-release
       - name: openshift-v4.10.52-manage-mirror
         path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.52-x86_64-ocp-release
+      - name: openshift-v4.10.46-disconnected
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.46-x86_64
+      - name: openshift-v4.10.47-disconnected
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.47-x86_64
+      - name: openshift-v4.10.48-disconnected
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.48-x86_64
+      - name: openshift-v4.10.51-disconnected
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.51-x86_64
+      - name: openshift-v4.10.52-disconnected
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.52-x86_64
 
         #FAILS path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift-release-dev/ocp-release:4.10.46-x86_64
 
