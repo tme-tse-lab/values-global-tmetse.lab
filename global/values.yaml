@@ -67,8 +67,8 @@ global:
         path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.46-x86_64
       - name: openshift-v4.10.47-disconnected
         path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.47-x86_64
-      - name: openshift-v4.10.48-disconnected
-        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.48-x86_64
+      - name: openshift-v4.10.50-disconnected
+        path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.50-x86_64
       - name: openshift-v4.10.51-disconnected
         path: lab-registry.mgmt.tmetse.lab/gitops_mgmt/openshift4-release-images:4.10.51-x86_64
       - name: openshift-v4.10.52-disconnected
