@@ -106,11 +106,11 @@ mgmt:
     thanos_yaml: |-
       type: s3
       config:
-        bucket: "ocp-mgmt-thanos-bucket"
-        endpoint: "192.168.52.57:80"
+        bucket: BUCKET_NAME
+        endpoint: BUCKET_HOST
         insecure: true
-        access_key: "N2YYVI8PKLE3ZO5ODV22"
-        secret_key: "udDUUjmFHa4ag03MPWdgmncwYmqYf6b1qMWIGbhJ"
+        access_key: AWS_ACCESS_KEY_ID
+        secret_key: AWS_SECRET_ACCESS_KEY
         http_config:
           insecure_skip_verify: true
   # 
